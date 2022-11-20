@@ -12,7 +12,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func Run(httpAddr string, filenames ...string) {
+func Run(filenames ...string) {
 	cfg, err := config.New(filenames...)
 	if err != nil {
 		panic(err)
@@ -47,5 +47,5 @@ func Run(httpAddr string, filenames ...string) {
 	handlers := handler.New(services)
 	handlers.Register(e)
 
-	e.Logger.Fatal(e.Start(httpAddr))
+	e.Logger.Fatal(e.Start(":" + cfg.Port))
 }

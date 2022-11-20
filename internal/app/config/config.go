@@ -9,6 +9,7 @@ import (
 type Config struct {
 	Timeout  int `env:"TIMEOUT" default:"60"`
 	Postgres Postgres
+	Port     string `env:"PORT" default:"8080"`
 }
 
 type Postgres struct {
