@@ -12,6 +12,7 @@ type Config struct {
 }
 
 type Postgres struct {
+	URL      string `env:"DATABASE_URL" default:"postgres://postgres:postgres@localhost:5432/postgres"`
 	Host     string `env:"POSTGRES_HOST" default:"localhost"`
 	Port     int    `env:"POSTGRES_PORT" default:"5432"`
 	User     string `env:"POSTGRES_USER" default:"postgres"`

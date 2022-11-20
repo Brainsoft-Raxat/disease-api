@@ -3,17 +3,16 @@ package connection
 import (
 	"context"
 	"disease-api/internal/app/config"
-	"fmt"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"time"
 )
 
 func DialPostgres(ctx context.Context, cfg config.Postgres) (*pgxpool.Pool, error) {
-	dbURL := fmt.Sprintf("postgresql://%s:%s@%s:%v/%s?sslmode=disable", cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Database)
+	//dbURL := fmt.Sprintf("postgresql://%s:%s@%s:%v/%s?sslmode=disable", cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Database)
 	ctx, cancel := context.WithTimeout(ctx, 30*time.Second)
 	defer cancel()
 
-	pool, err := pgxpool.Connect(ctx, dbURL)
+	pool, err := pgxpool.Connect(ctx, cfg.URL)
 	if err != nil {
 		return nil, err
 	}
